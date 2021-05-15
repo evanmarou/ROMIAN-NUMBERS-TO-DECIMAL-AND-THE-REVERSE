@@ -1,0 +1,27 @@
+#!/bin/bash
+read -p "FOR DECIMAL TO ROMIAN TYPE 1, FOR ROMIAN TO DECIMAL TYPE 2" input
+
+#DECIMAL INTO ROMIAN
+if [ "$input" = "1" ]
+then
+  read -p "TYPE A DECIMAL NUMBER" n #eisagoume enan decimal number
+  arrayMon=('' 'I' 'II' 'III' 'IV' 'V' 'VI' 'VII' 'VII' 'IX') #1os pinakas  apo 1-9
+  arrayDek=('' 'X' 'XX' 'XXX' 'XL' 'L' 'LX' 'LXX' 'LXXX' 'XC') #2os pinakas apo 10-99
+  arrayEk=('' 'C' 'CC' 'CCC' 'CD' 'D' 'DC' 'DCC' 'DCCC' 'CM') #3os pinakas apo 100-999
+  arrayXil=('' 'M' 'MM' 'MMM') #4os pinakas apo 1000-4999
+  declare -i n #dhlono thn metabliti n
+  declare -i xil #dilono thn metabliti xil
+  declare -i ek #dilono thn metablhth ek
+  declare -i dek # dhlono thn metablhth dek
+  declare -i mon #dilono thn metabliti mon
+  xil=n/1000 #pra3eis
+  ek=(n-xil*1000)/100
+  dek=(n-xil*1000 - ek*100)/10
+  mon=(n-xil*1000-ek*100-dek*10)
+  roman=${arrayXil[xil]}${arrayEk[ek]}${arrayDek[dek]}${arrayMon[mon]}
+  echo $roman  #emfanisi to roman
+fi
+#ROMIAN INTO DECIMAL
+if [ "$input" = "2" ]
+then
+  read
